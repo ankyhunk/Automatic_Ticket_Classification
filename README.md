@@ -13,6 +13,7 @@ This project aims to automate the customer support ticket system of a financial 
   - [Solution](#solution)
   - [Features](#features)
   - [Model Evaluation Metrics](#model-evaluation-metrics)
+  - [How to run](#how-to-run)
   - [Technologies](#technologies)
   - [Conclusion](#conclusion)
 
@@ -21,6 +22,20 @@ In this case study, you will be working as an NLP engineer for a financial compa
 ## Solution
 
 To automate the customer support ticket system, we will use NLP techniques to process and analyze the text data. We will apply ML algorithms to classify support tickets based on their content and assign them to the relevant team. The ML component of this project utilizes a powerful algorithm that predicts the ticket's category based on the content of the ticket, achieving high accuracy rates.
+
+### Approach
+
+1. **Data:** customer complaints in JSON format (`complaints-2021-05-14_08_16.json`, provided with the upGrad case study)
+2. **Text cleaning:** lowercase, remove text in brackets, punctuation and words containing numbers
+3. **Lemmatization and POS filtering:** lemmatize with spaCy (`en_core_web_sm`) and keep only nouns (`NN`)
+4. **Topic modelling:** TF-IDF and **NMF** with 5 topics, mapped to the five ticket categories:
+   - Bank Account services
+   - Credit card or prepaid card
+   - Theft/Dispute Reporting
+   - Mortgage/Loan
+   - Others
+5. **Classification:** train supervised models on the topic labels (Multinomial Naive Bayes, Logistic Regression, Decision Tree, Random Forest), then tune them with GridSearchCV
+6. **Prediction:** run a new complaint through the same cleaning steps and predict its category
 
 ## Features
 
@@ -40,7 +55,6 @@ The following table summarizes the evaluation metrics for each of the models use
 | DecisionTreeClassifier  | 0.78    | 0.78      | 0.78   | 0.78     | 0.86         |
 | RandomForestClassifier  | 0.82    | 0.83      | 0.82   | 0.81     | 0.97         |
 | MultinomialNB           | 0.71    | 0.74      | 0.71   | 0.67     | 0.94         |
-| XGBClassifier           | 0.91    | 0.91      | 0.91   | 0.91     | 0.99         |
 
 These metrics provide a measure of how well each model performed on the test dataset. The metrics used to evaluate the models are:
 
@@ -50,14 +64,24 @@ These metrics provide a measure of how well each model performed on the test dat
 - F1 Score: The harmonic mean of precision and recall.
 - ROC AUC Score: The area under the Receiver Operating Characteristic (ROC) curve, which measures the performance of the model at different classification thresholds.
 
-Based on these metrics, the Logistic Regression and XGBClassifier models performed the best, with high accuracy, precision, recall, F1 score, and ROC AUC score. The DecisionTreeClassifier and RandomForestClassifier models also performed reasonably well, with an accuracy of 0.78 and 0.82, respectively. The MultinomialNB model had the lowest performance, with an accuracy of 0.71.
+Based on these metrics, the Logistic Regression model (tuned with GridSearchCV) performed the best, with high accuracy, precision, recall, F1 score, and ROC AUC score. The DecisionTreeClassifier and RandomForestClassifier models also performed reasonably well, with an accuracy of 0.78 and 0.82, respectively. The MultinomialNB model had the lowest performance, with an accuracy of 0.71.
+
+## How to run
+
+```bash
+pip install numpy pandas matplotlib seaborn plotly wordcloud scikit-learn spacy
+python -m spacy download en_core_web_sm
+jupyter notebook Automatic_Ticket_Classification_Assignment_Ankur_A_Gupta.ipynb
+```
+
+The notebook was written for Google Colab and reads the data from `/content/complaints-2021-05-14_08_16.json`; change that path if you run it elsewhere.
 
 ## Technologies
 
 - Python
-- Natural Language Processing
-- Machine Learning
-- Data Science
+- Natural Language Processing (spaCy)
+- Machine Learning (scikit-learn: NMF, Naive Bayes, Logistic Regression, Decision Tree, Random Forest)
+- pandas, NumPy, Matplotlib, seaborn, Plotly, WordCloud
 
 ## Conclusion
 
