@@ -1,4 +1,4 @@
-# Automatic_Ticket_Classification
+# Automatic Ticket Classification
 
 For a financial company, customer complaints are crucial as they provide insights into the shortcomings of their products and services. Resolving complaints efficiently and on time can reduce customer dissatisfaction and strengthen their loyalty. Additionally, it allows companies to continuously improve their services to attract more customers.
 
