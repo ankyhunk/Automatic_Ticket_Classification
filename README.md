@@ -17,7 +17,7 @@ This project aims to automate the customer support ticket system of a financial 
   - [Technologies](#technologies)
   - [Conclusion](#conclusion)
 
-In this case study, you will be working as an NLP engineer for a financial company that wants to automate its customer support tickets system. As a financial company, the firm has many products and services such as credit cards, banking, and mortgages/loans. Customer complaints are often an indicator of the shortcomings in their products and services, and resolving these complaints efficiently is critical for retaining customer satisfaction and loyalty. However, customer complaints are unstructured text data, and traditionally, companies need to allocate the task of evaluating and assigning each ticket to the relevant department to multiple support employees.
+In this project, I work as an NLP engineer for a financial company that wants to automate its customer support tickets system. As a financial company, the firm has many products and services such as credit cards, banking, and mortgages/loans. Customer complaints are often an indicator of the shortcomings in their products and services, and resolving these complaints efficiently is critical for retaining customer satisfaction and loyalty. However, customer complaints are unstructured text data, and traditionally, companies need to allocate the task of evaluating and assigning each ticket to the relevant department to multiple support employees.
 
 ## Solution
 
@@ -25,7 +25,7 @@ To automate the customer support ticket system, we will use NLP techniques to pr
 
 ### Approach
 
-1. **Data:** customer complaints in JSON format (`complaints-2021-05-14_08_16.json`, provided with the upGrad case study)
+1. **Data:** customer complaints in JSON format (`complaints-2021-05-14_08_16.json`)
 2. **Text cleaning:** lowercase, remove text in brackets, punctuation and words containing numbers
 3. **Lemmatization and POS filtering:** lemmatize with spaCy (`en_core_web_sm`) and keep only nouns (`NN`)
 4. **Topic modelling:** TF-IDF and **NMF** with 5 topics, mapped to the five ticket categories:
@@ -41,7 +41,7 @@ To automate the customer support ticket system, we will use NLP techniques to pr
 
 - Automatic ticket classification using NLP and ML algorithms
 - Accurate identification and categorization of support tickets
-- Efficient assignment of support tickets to the relevant team for swift resolution
+- Efficient routing of support tickets to the relevant team for swift resolution
 - Comprehensive documentation and step-by-step guide for using and integrating the system with existing support workflows
 - Open-source codebase for customization and enhancement of the system to fit specific needs.
 
@@ -71,7 +71,7 @@ Based on these metrics, the Logistic Regression model (tuned with GridSearchCV) 
 ```bash
 pip install numpy pandas matplotlib seaborn plotly wordcloud scikit-learn spacy
 python -m spacy download en_core_web_sm
-jupyter notebook Automatic_Ticket_Classification_Assignment_Ankur_A_Gupta.ipynb
+jupyter notebook Automatic_Ticket_Classification_Ankur_A_Gupta.ipynb
 ```
 
 The notebook was written for Google Colab and reads the data from `/content/complaints-2021-05-14_08_16.json`; change that path if you run it elsewhere.
